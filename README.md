@@ -3,7 +3,7 @@ Search torrents from multiple websites via the CLI
 
 
 ### Requirements
-- Python 2.7
+- Python 3.9
 - bs4
 - clint
 - pyperclip
@@ -13,25 +13,16 @@ Search torrents from multiple websites via the CLI
 
 
 ### Installation
-Install package and dependencies directly via pip using `pip install torrent-hound`
-
-Or run `pip install -r requirements.txt` in the shell to install all dependencies
+Clone the repository and run torrent-hound.py
 
 
 ### Update existing Intallation
-To upgrade `torrent-hound` via pip, run `pip install torrent-hound -U`
-
-If installed via `git`, then simply run `git pull` in the shell after navigating to the `torrent-hound` directory
-
-Otherwise download the latest binary from the `releases` section of this repository
+Run `git pull` in the shell after navigating to the `torrent-hound` directory
 
 
 ### Usage
-If installed via pip, `torrent-hound` would have been added to `$PATH`. Simply run `torrent-hound` or `torrent-hound [search-query]` to begin.
-
-Download the `torrent-hound` binary from the `bin/` directory.
-
-`torrent-hound [search-query]` or simply `torrent-hound`
+Navigate to the repository root and execute below command
+`./torrent-hound.py [search-query]` or simply `./torrent-hound.py`
 
 
 ### Menu

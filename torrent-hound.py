@@ -126,9 +126,9 @@ def searchRarbg(search_string=defaultQuery, quiet_mode=False):
 
     search_string = search_string.replace(" ", "%20")
     base_url = 'https://torrentapi.org/pubapi_v2.php?'
-    new_token = 'get_token=get_token&app_id=' + str(app_id)
-    search_criteria = 'mode=search&search_string=' + search_string + "&"
-    options = 'format=json_extended&ranked=0&token=' + auth_token + '&app_id=' + str(app_id)
+    new_token = f"get_token=get_token&app_id={app_id}"
+    search_criteria = f"mode=search&search_string={search_string}&"
+    options = f"format=json_extended&ranked=0&token={auth_token}&app_id={app_id}"
     url = base_url + search_criteria + options
     rarbg_url = url
     #print url
@@ -507,7 +507,7 @@ def _parse_search_result_table_row(tr):
     else:
         res['name'] = link_name.contents[0].encode('utf-8').strip()
         res['link'] = link_name["href"].encode('utf-8')
-        desc_string = tds[1].find("font").contents[0].encode('utf-8').replace("&nbsp;", " ")
+        desc_string = str(tds[1].find("font").contents[0]).encode().replace('&nbsp;'.encode(), ' '.encode()).decode()
         m = re.search(r"^Uploaded (Today|Y-day|\d\d-\d\d)\xc2\xa0(\d{4}|\d\d:\d\d), " + r"Size (\d+(?:.\d*)?\xc2\xa0(?:[KMG]iB))", desc_string)
         try :
             temp_size = str(m.group(3)).replace('\xc2\xa0', ' ')
@@ -635,7 +635,7 @@ def parse_results_tpb_api(response_json, quiet_mode=False):
 
 def getQuery():
     global query
-    query = raw_input('Enter search query : ')
+    query = input('Enter search query : ')
     return query
 
 def print_top_results(limit=10):
@@ -907,7 +907,7 @@ def switch(arg, tpb_api=False):
             else:
                 print("Not a valid command!")
     elif arg == 's':
-        query = raw_input("Enter query : ")
+        query = input("Enter query : ")
         if query == '':
             query = defaultQuery
         searchAllSites(query, force_search=True)
@@ -1081,5 +1081,5 @@ if __name__ == '__main__':
         exit = False
         while(exit != True):
             print_menu(1)
-            choice = raw_input("Enter command : ")
+            choice = input("Enter command : ")
             switch(choice, tpb_api=False)
